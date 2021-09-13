@@ -10,7 +10,7 @@ item.o: Item.cpp Item.hpp
 	clang++ -c -g -O2 Item.cpp -o item.o
 
 clean:
-	-rm term
+	-rm term *.o
 
 .PHONY: all clean
 
