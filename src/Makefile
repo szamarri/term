@@ -6,8 +6,8 @@ term: main.o item.o
 main.o: main.cpp
 	clang++ -c -g -O2 main.cpp
 	
-item.o: Item.cpp Item.hpp
-	clang++ -c -g -O2 Item.cpp -o item.o
+item.o: item.cpp item.h
+	clang++ -c -g -O2 item.cpp
 
 clean:
 	-rm term *.o
