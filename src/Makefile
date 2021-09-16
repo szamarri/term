@@ -1,16 +1,22 @@
-all: term
-	
-term: main.o item.o
-	clang++ -o $@ item.o main.o
+SOURCES := $(wildcard *.cpp)
+OBJECTS := $(subst .cpp,.o,$(SOURCES))
+INCLUDE := -I.
+CC      := clang++
 
-main.o: main.cpp
-	clang++ -c -g -O2 main.cpp
-	
-item.o: item.cpp item.h
-	clang++ -c -g -O2 item.cpp
+all: term
+
+term: $(OBJECTS)
+	$(CC) -o $@ $^
+
+%.o: %.cpp
+	$(CC) -o $@ -c $^ $(INCLUDE)
+
+info:
+	$(info $(SOURCES))
+	$(info $(OBJECTS))
 
 clean:
-	-rm term *.o
+	-rm term $(OBJECTS)
 
 .PHONY: all clean
 
