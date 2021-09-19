@@ -1,15 +1,16 @@
-SOURCES := $(wildcard *.cpp)
-OBJECTS := $(subst .cpp,.o,$(SOURCES))
-INCLUDE := -I.
-CC      := clang++
+SOURCES  := $(wildcard *.cpp)
+OBJECTS  := $(subst .cpp,.o,$(SOURCES))
+INCLUDE  := -I. -I/usr/lib/
+CC       := clang++
+CXXFLAGS := -std=c++11
 
 all: term
 
 term: $(OBJECTS)
-	$(CC) -o $@ $^
+	$(CC) -o $@ $^ $(CXXFLAGS)
 
 %.o: %.cpp
-	$(CC) -o $@ -c $^ $(INCLUDE)
+	$(CC) -o $@ -c $^ $(INCLUDE) $(CXXFLAGS)
 
 info:
 	$(info $(SOURCES))
